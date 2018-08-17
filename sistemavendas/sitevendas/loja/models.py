@@ -1,4 +1,5 @@
 from django.db import models
+from usuarios.models import Perfil
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -27,4 +28,30 @@ class Stock(models.Model):
     total = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return str(self.total)
+        return str("{}-{}").format(self.product.name, self.total)
+
+class Order(models.Model):
+    client = models.ForeignKey(Perfil, on_delete=models.CASCADE)
+    order_date = models.DateTimeField('data emissão')
+    CATEGORY_CHOICES = (
+        ('DIN', 'Dinheiro'),
+        ('CHE', 'Cheque'),
+        ('CTC', 'Cartão de Crédito'),
+        ('CTD', 'Cartão de Débito'),
+    )
+
+    def __str__(self):
+        return str("{}-{}").format(self.client.nome, self.order_date)
+
+class ItemOrder(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product =models.ForeignKey(Product, on_delete=models.CASCADE)
+    price = models.FloatField()
+    qtde = models.PositiveIntegerField()
+
+    def total(self):
+        return self.price * self.qtde
+    
+    def __str__(self):
+        return str("{}-{}").format(self.product.name, self.qtde)
+
