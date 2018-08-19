@@ -1,0 +1,13 @@
+{% extends "loja/base_loja.html" %}
+{% block body %}
+<h1>Produtos</h1>
+<ul>
+    {%for product in list_product%}
+        <li>
+           {{ product.name }}
+                <a href="{%url 'loja:add_item' product.id%}">Remover</a>
+                <a href="{%url 'loja:add_item' product.id%}">Adicionar</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

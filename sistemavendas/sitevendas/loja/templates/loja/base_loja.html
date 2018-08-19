@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Vendas</title>
+    </head>
+
+    <div class="header">
+            <ul class="nav nav-pills pull-right">
+            {% if perfil %}
+                <li><a href="{%url 'usuarios:logout'%}"> Logout </a></li>
+                <li><a> Acompanhar Pedido </a></li>
+            {% else %}
+                <li><a href="{% url 'usuarios:login' %}"> Login </a></li>
+                <li><a href="{% url 'usuarios:registrar' %}"> Registre-se</a></li>
+            {% endif %}
+            </ul>
+    <h3 class="text-muted">Loja Virtual</h3>
+    </div>
+
+    <body>
+        <div class="container">
+            {% block body %}
+
+            {% endblock %} 
+        </div>
+    </body>
+</html>

@@ -10,6 +10,6 @@ class Perfil(models.Model):
         return self.usuario.email
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name="perfil")
 
-    def get_perfil_logado(request):
-        return Perfil.objects.get(id=1)
 
+    def __str__(self):
+        return str({}).format(self.nome)
