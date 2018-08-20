@@ -2,9 +2,7 @@
 Sistema de vendas onde seja possível cadastrar produtos, registrar pagamento e acompanhar a montagem do pedido.
 
 ## Requirementos 
-Virtual environment
-Python3
-Django
+Virtual environment, Python3, Django
 
 # Instalação
 Ativar virtual environment em: SistemaVendas/sistemavendas
