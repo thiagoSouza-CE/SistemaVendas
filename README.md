@@ -6,14 +6,11 @@ Virtual environment
 Python3
 Django
 
-#Instalação
-Ativar virtual environment
-
-## Em SistemaVendas/sistemavendas
-
+# Instalação
+Ativar virtual environment em: SistemaVendas/sistemavendas
 source bin/activate
 
-## Em SistemaVendas/sistemavendas/sitevendas
+Em: SistemaVendas/sistemavendas/sitevendas
 python manage.py loaddata populate_db.json
 python manage.py makemigrations
 python manage.py migrate
