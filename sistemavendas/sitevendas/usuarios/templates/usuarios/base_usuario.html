@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="pt">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Vendas</title>
+        <link href="{% static "styles/bootstrap.css" %}" rel="stylesheet">
+        <link href="{% static "styles/main.css" %}" rel="stylesheet">
     </head>
-
     <body>
         <div class="container">
             {% block body %}

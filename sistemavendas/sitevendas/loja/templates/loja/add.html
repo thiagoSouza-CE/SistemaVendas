@@ -1,0 +1,17 @@
+{% extends "loja/base_loja.html" %}
+{% block body %}
+<div class="main-description">
+    {% if stock.total > 0%}
+    <h1>Você confirma a adição de {{product.name}} no pedido?</h1>
+    {%else%}
+    <h1>Sem estoque. Volte mais Tarde.</h1>
+    {% endif %}
+    <form class="form-signin" action="{% url 'loja:add_item' product_id=product.id order_id=order.id%}" method="post">
+        {% csrf_token %}
+        {% if stock.total > 0%}
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Registrar</button>
+        {%endif%}        
+    </form>
+    <a href="{%url 'loja:index'%}">Voltar</a>
+</div>
+{% endblock %}

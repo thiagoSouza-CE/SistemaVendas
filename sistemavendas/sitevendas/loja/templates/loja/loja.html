@@ -5,9 +5,14 @@
     {%for product in list_product%}
         <li>
            {{ product.name }}
-                <a href="{%url 'loja:add_item' product.id%}">Remover</a>
-                <a href="{%url 'loja:add_item' product.id%}">Adicionar</a>
-        </li>
+                {% if perfil %}
+                    {%if product.id in itens_order%}
+                        <a href="{%url 'loja:remove_item' product.id order.id%}">Remover</a>
+                    {%else%}
+                        <a href="{%url 'loja:add_item' product.id order.id%}">Adicionar</a>
+                    {%endif%}
+                {% endif %}
+         </li>
     {% endfor %}
 </ul>
 {% endblock %}

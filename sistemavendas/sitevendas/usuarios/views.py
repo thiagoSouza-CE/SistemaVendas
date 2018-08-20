@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 def get_perfil_logado(request):
      return request.user.perfil
 
-
 class RegisterView(View):
     template_name = 'usuarios/registrar.html'
 

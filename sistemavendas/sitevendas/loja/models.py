@@ -1,6 +1,7 @@
 from django.db import models
 from usuarios.models import Perfil
 
+
 class Product(models.Model):
     CATEGORY_CHOICES = (
         ('PRC', 'Processadores'),
@@ -27,7 +28,7 @@ class Stock(models.Model):
     total = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return str("{}-{}").format(self.product.name, self.total)
+        return str("{}-{}").format(self.product.name, self.total)   
 
 class Order(models.Model):
     STATUS_CHOICES = (
@@ -45,10 +46,16 @@ class Order(models.Model):
         default = "P.A"
     )
 
-    def isAddedProduct(self, product_id):
-        product = Product.get(pk=product_id)
-        product_from_item = ItemOrder.objects.get(order = self.order, product = product) 
-        return len(product_from_item.count > 0)
+    @staticmethod
+    def returnOpenOrder(perfil):
+        last_order_open = Order.objects.filter(client=perfil, status_order='P.A')
+        if len(last_order_open) == 0:
+            current_client = self.request.user.perfil
+            current_order = Order(client=current_client, order_date=datetime.now())
+            current_order.save()
+            return current_order
+        else:
+            return last_order_open.first
 
     def __str__(self):
         return str("{}-{}").format(self.client.nome, self.order_date)

@@ -1,0 +1,11 @@
+{% extends "loja/base_loja.html" %}
+{% block body %}
+<div class="main-description">
+    <h1>Você confirma a exclusão de {{product.name}} no pedido?</h1>
+    <form class="form-signin" action="{% url 'loja:remove_item' product_id=product.id order_id=order.id%}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Remover</button>
+    </form>
+    <a href="{%url 'loja:index'%}">Voltar</a>
+</div>
+{% endblock %}

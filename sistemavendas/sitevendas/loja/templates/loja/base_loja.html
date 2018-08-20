@@ -1,16 +1,19 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="pt">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Vendas</title>
+        <link href="{% static "styles/bootstrap.css" %}" rel="stylesheet">
+        <link href="{% static "styles/main.css" %}" rel="stylesheet">
     </head>
 
     <div class="header">
             <ul class="nav nav-pills pull-right">
             {% if perfil %}
                 <li><a href="{%url 'usuarios:logout'%}"> Logout </a></li>
-                <li><a> Acompanhar Pedido </a></li>
+                <li><a href="{%url 'loja:list_order' perfil_id=perfil.id%}">  Pedido </a></li>
             {% else %}
                 <li><a href="{% url 'usuarios:login' %}"> Login </a></li>
                 <li><a href="{% url 'usuarios:registrar' %}"> Registre-se</a></li>
